@@ -1,15 +1,15 @@
-const express = require('express');
-const route = require('route')
-const mongoose = require('mongoose');
-const bodyparser = require('body-parser');
+const express = require("express");
+const route = require("route")
+const mongoose = require("mongoose");
+const bodyparser = require("body-parser");
 const passport = require("passport");
 
 
 
 //bring all route
-const auth = require('./routes/api/auth');
-const questions = require('./routes/api/questions');
-const profile = require('./routes/api/profile');
+const auth = require("./routes/api/auth");
+const questions = require("./routes/api/questions");
+const profile = require("./routes/api/profile");
 
 const app = express();
 
@@ -21,10 +21,10 @@ app.use(bodyparser.json());
 
 
 //mongodb configration
-const db=require('./setup/myurl').mongoURL;
+const db=require("./setup/myurl").mongoURL;
 mongoose
     .connect(db)
-    .then(()=>console.log("Mongodb connected successfully"))
+    .then(()=>console.log("MongoDB connected successfully!"))
     .catch( err=> console.log(err))
 
 
@@ -42,21 +42,23 @@ require("./strategies/jsonwebtoken")(passport);
 
 //actual routes 
 //- calling auth.js
-app.use('/api/auth',auth);
+app.use("/api/auth",auth);
 
 //- calling questions
-app.use('/api/questions',questions);
+app.use("/api/questions",questions);
 
 //-calling profile
-app.use('/api/profile',profile);
+app.use("/api/profile",profile);
 
 
 
 
 // testing route
-app.get('/',(req,res)=>
+app.get("/",(req,res)=>
 {
-    res.send('hello');
+    res.send("hello");
+    console.log(res);
+    console.log(req);
 })
 
-app.listen(process.env.PORT||1773,()=>console.log("server runnng at port 1773"));
+app.listen(process.env.PORT||1773,()=>console.log("Server runnng at port 1773"));

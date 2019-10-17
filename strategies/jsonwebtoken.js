@@ -2,11 +2,11 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const mongoose = require("mongoose");
 const passport = require("passport");
-const Person = mongoose.model('users')
+const Person = mongoose.model("users")
 const key = require("../setup/myurl");
 
 var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken('JWT ');
 opts.secretOrKey = key.secret;
 
 module.exports= passport=> passport.use(new JwtStrategy(opts, (jwt_payload, done)=> {
