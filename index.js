@@ -1,6 +1,6 @@
 const express = require('express');
 const route = require('route')
-const mongooes = require('mongoose');
+const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const passport = require("passport");
 
@@ -22,7 +22,7 @@ app.use(bodyparser.json());
 
 //mongodb configration
 const db=require('./setup/myurl').mongoURL;
-mongooes
+mongoose
     .connect(db)
     .then(()=>console.log("Mongodb connected successfully"))
     .catch( err=> console.log(err))
