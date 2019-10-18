@@ -6,7 +6,7 @@ const Person = mongoose.model("users")
 const key = require("../setup/myurl");
 
 var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken('JWT ');
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = key.secret;
 
 module.exports= passport=> passport.use(new JwtStrategy(opts, (jwt_payload, done)=> {
